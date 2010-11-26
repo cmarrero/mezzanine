@@ -57,7 +57,7 @@ class FieldManager(models.Manager):
         return self.filter(visible=True)
 
 
-class Field(Orderable):
+class Field(models.Model):
     """
     A field for a user-built form.
     """
