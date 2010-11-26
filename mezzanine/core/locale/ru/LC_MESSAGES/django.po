@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-24 21:55-0430\n"
+"POT-Creation-Date: 2010-11-26 11:52-0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -108,6 +108,10 @@ msgstr "Ошибка"
 #: templates/500.html:10
 msgid "Sorry, an error occurred."
 msgstr "Извините, возникла ошибка."
+
+#: templates/base.html:47
+msgid "Powered by"
+msgstr ""
 
 #: templates/index.html:6 templates/admin/index.html:31
 msgid "Home"

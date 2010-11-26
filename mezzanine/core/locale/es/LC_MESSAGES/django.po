@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mezzanine 0.8.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-24 21:55-0430\n"
-"PO-Revision-Date: 2010-11-24 21:58-0400\n"
+"POT-Creation-Date: 2010-11-26 11:52-0430\n"
+"PO-Revision-Date: 2010-11-26 11:53-0400\n"
 "Last-Translator: Carlos David Marrero <cdmarrero2040@gmail.com>\n"
 "Language-Team: Armadillo Integración Tecnológica C.A <info@armadillotec.com>\n"
 "Language: \n"
@@ -110,6 +110,10 @@ msgstr "Error"
 #: templates/500.html:10
 msgid "Sorry, an error occurred."
 msgstr "Lo sentimos, ha ocurrido un error."
+
+#: templates/base.html:47
+msgid "Powered by"
+msgstr "Potenciado por"
 
 #: templates/index.html:6
 #: templates/admin/index.html:31
