@@ -4,7 +4,7 @@ Attach behaviour to the keywords field so that a textbox can be used rather
 than the default select-multiple for ManyToMany fields.
 */
 
-$(function() {
+(function($) {
 
     // Hide the select-multiple for the keywords field and add a textbox beside 
     // it with a comma separated list of existing keywords selected in the 
@@ -74,4 +74,4 @@ $(function() {
         return keywordsSaved;
     });
 
-});
+})(django.jQuery);
