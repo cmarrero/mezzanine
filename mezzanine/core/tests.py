@@ -14,6 +14,7 @@ from mezzanine.core.models import CONTENT_STATUS_PUBLISHED
 from mezzanine.forms import fields
 from mezzanine.forms.models import Form
 from mezzanine.pages.models import ContentPage
+from mezzanine.utils.tests import run_pyflakes_for_package
 
 
 class Tests(TestCase):
@@ -45,11 +46,11 @@ class Tests(TestCase):
         response = self.client.get(draft.get_absolute_url())
         self.assertEqual(response.status_code, 200)
 
-    def test_overriden_page(self):
+    def test_overridden_page(self):
         """
         Test that a page with a slug matching a non-page urlpattern return
-        True for its overriden property. The blog page from the fixtures
-        should classify as this case.
+        ``True`` for its overridden property. The blog page from the fixtures
+        should satisfy this case.
         """
         blog_page, created = ContentPage.objects.get_or_create(
                                                 slug=settings.BLOG_SLUG)
@@ -190,7 +191,7 @@ class Tests(TestCase):
 
     def test_settings(self):
         """
-        Test that an editable setting can be overriden with a DB value and 
+        Test that an editable setting can be overridden with a DB value and 
         that the data type is preserved when the value is returned back out 
         of the DB. Also checks to ensure no unsupported types are defined 
         for editable settings.
@@ -219,3 +220,12 @@ class Tests(TestCase):
         settings.use_editable()
         for (name, value) in values_by_name.items():
             self.assertEqual(getattr(settings, name), value)
+
+    def test_with_pyflakes(self):
+        """
+        Run pyflakes across the code base to check for potential errors.
+        """
+        warnings = run_pyflakes_for_package("mezzanine")
+        if warnings:
+            warnings.insert(0, "pyflakes warnings:")
+            self.fail("\n".join(warnings))

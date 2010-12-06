@@ -1,10 +1,10 @@
 
 from collections import defaultdict
 
-from django.db.models import get_model, get_models
+from django.db.models import get_models
 
 from mezzanine.pages.models import Page
-from mezzanine.utils import admin_url
+from mezzanine.utils.urls import admin_url
 from mezzanine import template
 
 
@@ -112,16 +112,3 @@ def models_for_pages(*args):
             setattr(model, "add_url", admin_url(model, "add"))
             page_models.append(model)
     return page_models
-
-
-@register.filter
-def is_page_content_model(admin_model_dict):
-    """
-    Returns True if the model in the given admin dict is a subclass of the
-    ``Page`` model.
-    """
-    args = admin_model_dict["admin_url"].strip("/").split("/")
-    if len(args) == 2:
-        model = get_model(*args)
-        return model is not Page and issubclass(model, Page)
-    return False

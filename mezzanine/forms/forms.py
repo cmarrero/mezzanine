@@ -7,7 +7,6 @@ from django import forms
 from django.forms.extras import SelectDateWidget
 from django.core.files.storage import FileSystemStorage
 from django.core.urlresolvers import reverse
-from django.utils.importlib import import_module
 from django.utils.translation import ugettext_lazy as _
 
 from mezzanine.conf import settings
@@ -129,7 +128,8 @@ class FormForForm(forms.ModelForm):
 
     def email_to(self):
         """
-        Return the value entered for the first field of type ``EmailField``.
+        Return the value entered for the first field of type 
+        ``forms.fields.EMAIL``.
         """
         for field in self.form_fields:
             if field.is_a(fields.EMAIL):

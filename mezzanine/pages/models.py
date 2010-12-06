@@ -5,7 +5,7 @@ from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext_lazy as _
 
 from mezzanine.core.models import Displayable, Orderable, Content
-from mezzanine.utils import admin_url
+from mezzanine.utils.urls import admin_url
 
 
 class Page(Orderable, Displayable):
@@ -67,8 +67,8 @@ class Page(Orderable, Displayable):
 
     def overridden(self):
         """
-        Return True if the page's slug has an explicitly defined url pattern
-        and is therefore considered to be overriden.
+        Return ``True`` if the page's slug has an explicitly defined 
+        urlpattern and is therefore considered to be overridden.
         """
         from mezzanine.pages.views import page
         resolved_view = resolve(self.get_absolute_url())[0]

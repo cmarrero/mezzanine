@@ -14,7 +14,9 @@ from django.utils.text import capfirst
 
 from mezzanine.conf import settings
 from mezzanine.core.forms import get_edit_form
-from mezzanine.utils import admin_url, decode_html_entities, is_editable
+from mezzanine.utils.html import decode_entities
+from mezzanine.utils.views import is_editable
+from mezzanine.utils.urls import admin_url
 from mezzanine import template
 
 
@@ -51,7 +53,7 @@ def metablock(parsed):
     Remove HTML tags, entities and superfluous characters from meta blocks.
     """
     parsed = " ".join(parsed.replace("\n", "").split()).replace(" ,", ",")
-    return strip_tags(decode_html_entities(parsed))
+    return strip_tags(decode_entities(parsed))
 
 
 @register.inclusion_tag("includes/pagination.html", takes_context=True)
@@ -70,8 +72,8 @@ def pagination_for(context, current_page):
 @register.simple_tag
 def thumbnail(image_url, width, height):
     """
-    Given the url to an image, resizes the image using the given width and 
-    height on the first time it is requested, and returns the url to the new 
+    Given the URL to an image, resizes the image using the given width and 
+    height on the first time it is requested, and returns the URL to the new 
     resized image. if width or height are zero then original ratio is 
     maintained.
     """
@@ -137,8 +139,8 @@ def editable(parsed, context, token):
     """
     Add the required HTML to the parsed content for in-line editing, such as
     the icon and edit form if the object is deemed to be editable - either it
-    has an ``editable`` method which returns True, or the logged in user has
-    change permissions for the model.
+    has an ``editable`` method which returns ``True``, or the logged in user 
+    has change permissions for the model.
     """
     def parse_field(field):
         field = field.split(".")
@@ -167,8 +169,8 @@ def editable(parsed, context, token):
 @register.simple_tag
 def try_url(url_name):
     """
-    Mimics Django's ``url`` template tag but fails silently. Used for urls 
-    in admin templates as these urls won't resolve when admin tests are 
+    Mimics Django's ``url`` template tag but fails silently. Used for url 
+    names in admin templates as these won't resolve when admin tests are 
     running.
     """
     try:
